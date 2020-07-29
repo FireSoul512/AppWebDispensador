@@ -118,7 +118,7 @@ class vistaClass(View):
                 print("boton peso")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect( ('raspy2412.ddns.net',7080) )
-                mensaje = "SERVO"
+                mensaje = "PESO"
                 s.send(bytes(mensaje, "utf-8"))
                 msg = s.recv(1024)
                 print("El peso actual del dispensador es de: ",msg.decode("utf-8"),"g")
