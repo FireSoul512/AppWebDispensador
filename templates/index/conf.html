@@ -73,7 +73,7 @@
                 </div> 
                 <!---->
                 <br><br>
-
+                <!-- Inicio del formulario -->
                 <form method="POST">
                     {% csrf_token %}
 
@@ -104,7 +104,7 @@
                     </div>
 
                 </form>
-
+                <!-- Termino del formulario -->
                 <h3 {% if message.tags %} class="{{ message.tags }}" {% endif %}
                     style="font-family: cursive; font-size: 35px;">
                     {% if messages %}
