@@ -3,8 +3,9 @@ from django.views.generic import View
 from django.views.generic.edit import FormView
 from django.contrib import messages
 import socket,datetime
+from .models import Dispensar
 
-from .forms import DateForm
+from .forms import DateForm, ListaHoras
 
 
 class vistaConf(FormView):
@@ -79,8 +80,6 @@ class vistaConf(FormView):
             
         return redirect('/configure/')
     
-
-
 class vistaClass(View):
 
     #template = 'index.html'
@@ -136,11 +135,28 @@ class vistaClass(View):
                 print("No se pudo establecer conexion ;v")
                 return render(request,'index/index.html')
         if 'btn3' in request.POST.keys():
-            
-            r = vistaConf.getUrl()
 
-            return redirect(r)
+            return redirect('hora_list')
 
 class nextClas(View):
     def get(self, request, *arg, **kargs):
         return render(request,'index/next.html')
+
+def hora_list(request):
+    horas = Dispensar.objects.all()
+    contexto = {'hora':horas}
+    return render(request, 'index/registro_horario.html', contexto)
+
+def hora_create(request):
+    print (request.method)
+    if request.method == 'POST':
+        form = ListaHoras(request.POST)
+        print (form)
+        if form.is_valid():
+            form.save()
+            return redirect('hora_list')
+    else:
+        form = ListaHoras()
+
+    context = {'form':form}
+    return render(request, 'index/hora_form.html', context)
