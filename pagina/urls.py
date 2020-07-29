@@ -20,8 +20,7 @@ from Register.urls import RegisterClass
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(urls)),
-    path('registrate/', RegisterClass.as_view(), name='registrate')
-    
+    path('', include(urls), name='todos'),
+    path('registrate/', RegisterClass.as_view(), name='registrate'),
     
 ]
