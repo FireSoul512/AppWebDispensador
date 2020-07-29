@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {%load bootstrap4%}
+    {%bootstrap_css%}
+</head>
+
+<body style="background-color: #FFB700;">
+    <br><br>
+    <!--init image-->
+    <div class=" container text-center"style=" width:270px; ">
+        <img src="https://cdn5.upsocl.com/wp-content/uploads/2039/11/watermelon-helmets3.jpg"
+            class="rounded-circle"  style="width: 150px; height: 150px;">
+    </div>
+    <!--end image-->
+
+
+    <br>
+    <!--login post inputs username and password-->
+    <form method="POST">
+        <!--init cifrado-->
+        {%csrf_token%}
+        <!--end cifrado-->
+        <div class="container" style=" margin-left: auto; margin-right: auto;  width: 20%; height: 60%;">
+            <!--init user-->
+            <div class="container" style="width: 270px;">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">🎮</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+                        aria-describedby="basic-addon1" name="user" required>
+                </div>
+            </div>
+            <!--end user-->
+            
+            <!--init password-->
+            <div class="container" style="width: 270px;">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">🔒</span>
+                    </div>
+                    <input type="password" class="form-control" placeholder="Password" aria-label="Username"
+                        aria-describedby="basic-addon1" name="pass" required>
+                </div>
+            </div>
+            <!--end password-->
+            {%if error %}
+            <span style="margin-left: auto; color: white;">{{error}}</span>
+            {%endif%}
+            <!--init button-->
+            <div class="text-center form-check container" style="margin-left:-20px">
+                <button type="submit" style="width: 270px;" class="btn btn-primary">Log in</button>
+                <br>
+                <a style="margin-left: auto; margin-right: auto; margin-top: 5%;"href="{% url 'registrate' %}" >Registrate</a>
+            </div>
+            <!--end button-->
+        </div>
+    </form>
+    <!--end form-->
+
+    {%bootstrap_javascript jquery='full'%}
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispensador</title>
+  {%load bootstrap4%}
+  {%bootstrap_css%}
+</head>
+
+
+<body>
+  <div style="width: auto; height: auto;">
+    <div style="width: auto; margin-top: auto; height: 170px; background-color: #FF8600;">
+      <div class="">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="#">Dispensador de comida</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only"></span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'next' %}">Accesorios</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  Opciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'next' %}">Activar notificaciones</a>
+                  <a class="dropdown-item" href="{% url 'configure' %}">Automatizar proceso</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+
+      <div class="container" style="margin-left: auto; margin-right: auto; margin-top: 0px; width: 500px; height: 90px;
+          background-color: #FF8600; border-radius: 25px; text-align: center;">
+        <br>
+        <h1 style="margin-top: 0px; width: auto; height: auto; font-family: cursive; ">
+          Dispensador de comida
+        </h1>
+      </div>
+    </div>
+    <div style="width: auto; height: 439px; background-color: white;">
+      <br>
+      <div class = "container" style="margin-left: auto; margin-right: auto; margin-top: 4%; width: 500px; height: 250px;
+          background-color: #FFB700; border-radius: 25px; text-align: center;">
+        <br>
+        <h2 style="width: auto; height: auto; font-family: cursive; font-size: 40px; 
+                margin-top: 0px;"> Peso del alimento actual</h2>
+
+        <form method="POST">
+          <div style="width: auto; height: 35px;">
+            <h3 {% if message.tags %} class="{{ message.tags }}" {% endif %}
+              style="font-family: cursive; font-size: 35px;">
+              {% if messages %}
+              {% for message in messages %}
+
+              '{{message}}' gr
+
+              {% endfor %}
+              {% endif %}
+            </h3>
+          </div>
+          {% csrf_token %}
+          <br>
+          <div class="container " style=" margin-left:auto; margin-right: auto; height: 100px; ">
+            <button id="btn1" name="btn1" type="submit" style="margin-left: -5px; width: 200px; height: 50px; font-family: cursive; border-radius: 25px; 
+             background-color: #FF4F00; cursor: pointer;" class="btn btn-primary ">
+              <p style="height: 20px;color: white; font-size: 25px;">
+                Despachar</p>
+            </button>
+            <button id="btn2" name="btn2" type="submit" style="margin-left: 5px; width: 200px; height: 50px; 
+                        font-family: cursive; border-radius: 25px; background-color: #FF4F00; cursor: pointer;"
+              class="btn btn-primary ">
+              <p style="height: 20px; color: white; font-size: 24px; margin-top: 0px;
+                         ">Peso en el plato</p>
+            </button>
+          </div>
+
+      </div>
+      <br>
+      <div align="center"; class="container"; style="width: auto; height: auto;">
+        <button type="submit" id="btn3" name="btn3" style="font-family: cursive; border-radius: 25px; background-color: #FF4F00;
+                cursor: pointer; width: 500px; ">
+          <p style="
+                    height: 10px;
+                    color: white; font-size: 20px; margin-top: 0px;
+                     ">Elegir hora y fecha</p>
+        </button>
+      </div>
+      </form>
+
+    </div>
+
+  </div>
+  {%bootstrap_javascript jquery='full'%}
+</body>
+
+</html>
