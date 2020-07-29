@@ -42,6 +42,7 @@
   
         <div style="width: auto; height: auto;">
             <div style="width: auto; margin-top: auto; height: 170px; background-color: #FF8600;">
+                <!---->
                 <div class="">
                     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                         <a class="navbar-brand" href="#">Dispensador por tiempo</a>
@@ -55,27 +56,22 @@
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
                                     <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only"></span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'next' %}">Accesorios</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Opciones
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{% url 'next' %}">Activar notificaciones</a>
-                                        <a class="dropdown-item" href="{% url 'configure' %}">Automatizar proceso</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
-                                    </div>
-                                </li>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'hora_list' %}">Horarios</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'hora_create' %}">Agregar</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" href="{%url 'logout'%}">Salir de la cuanta</a>
+                                  </li>
                             </ul>
                         
                         </div>
                     </nav>
                 </div> 
+                <!---->
                 <br><br>
 
                 <form method="POST">
@@ -119,11 +115,6 @@
                     {% endfor %}
                     {% endif %}
                 </h3>
-
-
-
-
-
             </div>
 
 </body>
