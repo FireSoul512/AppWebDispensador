@@ -27,19 +27,13 @@
                 <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only"></span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'next' %}">Accesorios</a>
+                <a class="nav-link" href="{% url 'hora_list' %}">Horarios</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  Opciones
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="{% url 'next' %}">Activar notificaciones</a>
-                  <a class="dropdown-item" href="{% url 'configure' %}">Automatizar proceso</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="{% url 'logout' %}">Salir</a>
-                </div>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'hora_create' %}">Agregar</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{%url 'logout'%}">Salir de la cuanta</a>
               </li>
             </ul>
           </div>
@@ -99,7 +93,7 @@
           <p style="
                     height: 10px;
                     color: white; font-size: 20px; margin-top: 0px;
-                     ">Elegir hora y fecha</p>
+                     ">Horas automaticas</p>
         </button>
       </div>
       </form>
