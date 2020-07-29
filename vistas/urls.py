@@ -14,6 +14,6 @@ urlpatterns = [
     path('next/',login_required(nextClas.as_view()), name='next'),
     path('configure/',login_required(vistaConf.as_view()), name='configure' ),
     path('lista/',login_required(hora_list), name='hora_list' ),
-    url(r'^agregar',hora_create, name='hora_create'),
+    url(r'^agregar',login_required(hora_create), name='hora_create'),
 ]
  
