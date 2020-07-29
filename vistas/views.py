@@ -134,8 +134,8 @@ class vistaClass(View):
                 messages.info(request, 'Error')
                 print("No se pudo establecer conexion ;v")
                 return render(request,'index/index.html')
-        if 'btn3' in request.POST.keys():
 
+        if 'btn3' in request.POST.keys():
             return redirect('hora_list')
 
 class nextClas(View):
