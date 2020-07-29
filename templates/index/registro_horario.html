@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block nom %}
+    Lista de tiempos
+{% endblock %}
+{% block contenido %}
+    <div class="container">
+        <a href="{% url 'hora_create' %}" class="button">Agregar horario</a>        
+    </div>
+    <div align="center" class="container">
+        <br><br>
+        <table align="center" class="table table-border">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Hora</td>
+                    <td>Minuto</td>
+                    <td>Usuario a notificar</td>
+                </tr>
+                <tbody>
+                    {% if hora %}
+                    {% for horas in hora %}
+                    <tr>
+                        <td> {{ horas.id }} </td>
+                        <td> {{ horas.hora }} </td>
+                        <td> {{ horas.minuto }} </td>
+                        <td> {{ horas.id_usuario }} </td>
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <h1>No hay horas agregadas</h1>
+                    {% endif %}
+                </tbody>
+            </thead>
+        </table>
+    </div>
+{% endblock %}
