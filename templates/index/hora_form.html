@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+{% block nom %}
+    Lista de tiempos
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <a href="{% url 'hora_list' %}">Regresar</a>
+</div>
+<div align="center" class="container" style="margin-top: 2%;">
+    
+    <form method="post">
+        {% csrf_token %}
+        <p>Horas</p>
+        {{ form.hora }}
+        <br><br><br>
+        <p>Minutos</p>
+        {{ form.minuto }}
+        <br><br><br>
+        <p>Usuario al que se le notificara</p>
+        {{ form.id_usuario }}
+        <br><br>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+{% endblock %}
