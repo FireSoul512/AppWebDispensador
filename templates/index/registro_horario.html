@@ -13,7 +13,6 @@
                 <tr>
                     <td>#</td>
                     <td>Hora</td>
-                    <td>Minuto</td>
                     <td>Usuario a notificar</td>
                     <td>Acciones</td>
                 </tr>
@@ -22,8 +21,7 @@
                     {% for horas in hora %}
                     <tr>
                         <td> {{ horas.id }} </td>
-                        <td> {{ horas.hora }} </td>
-                        <td> {{ horas.minuto }} </td>
+                        <td> {{ horas.hora }}:{{horas.minuto}} </td>
                         <td> {{ horas.id_usuario }} </td>
                         <td>
                             <a class="btn btn-primary" href="{% url 'hora_edit' horas.id %}">Editar</a>
