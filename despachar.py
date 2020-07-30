@@ -4,7 +4,7 @@ from correos import Correo
 
 class Despachar:
     def inicio(destinatario):
-        iprasp = '192.168.1.71'#Cambiar al subir el proyecto
+        iprasp = 'raspy2412.ddns.net'#Cambiar al subir el proyecto
         msg = '-440'
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
