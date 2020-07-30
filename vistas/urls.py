@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import url, include
 
-from .views import vistaClass, vistaConf, nextClas, hora_list, hora_create
+from .views import vistaClass, vistaConf, nextClas, hora_list, hora_create, hora_edit, hora_delete
 from Login.views import LoginClass, l
 
 urlpatterns = [
@@ -15,5 +15,7 @@ urlpatterns = [
     path('configure/',login_required(vistaConf.as_view()), name='configure' ),
     path('lista/',login_required(hora_list), name='hora_list' ),
     url(r'^agregar',login_required(hora_create), name='hora_create'),
+    url(r'^editar/(?P<id_hora>\d+)/$', login_required(hora_edit), name='hora_edit' ),
+    url(r'^eliminar/(?P<id_hora>\d+)/$', login_required(hora_delete), name='hora_delete'),
 ]
  
