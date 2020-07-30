@@ -21,12 +21,6 @@ class vistaConf(FormView):
     def post(self, request, *arg, **kargs):
         form = DateForm(request.POST or None)
 
-        print('form',form.data['fecha'])
-        
-        print(form)
-        print(form.is_valid())
-        print(form.is_valid)
-
         if form.is_valid():
             
             #hora de la pagina
@@ -38,11 +32,8 @@ class vistaConf(FormView):
             year  = date[6:10]
             hour  = time[0:2]
             min   = time[3:5]
-            print(hour,':',min)
-            print('select: ',valid)
             #hora del server
             valid = datetime.datetime.now().__str__()
-            print(valid)
             date2 = valid[0:10]
             time2 = valid[11:-10] 
             hour2  = time2[0:2]
@@ -50,14 +41,12 @@ class vistaConf(FormView):
             year2  = date2[0:4]
             month2 = date2[5:7]
             day2   = date2[8:10]
-            print(hour2,':',min2)
             
             if( year >= year2):
                 if(month >= month2):
                     if(day >= day2):
                         bdate = True
                     elif(month > month2 and day <= day2):
-                        print(date,':',day2,'/',month2,'/',year2)
                         bdate = True
                     else:
                         bdate = False
@@ -93,47 +82,37 @@ class vistaClass(View):
         if 'btn1' in request.POST.keys():
 
             try:
-                print("boton despachar")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect( ('raspy2412.ddns.net',7080) )
                 
                 mensaje = "SERVO"
                 s.send(bytes(mensaje, "utf-8"))
                 msg = s.recv(1024)
-                print("El peso actual de del dispensador es de: ",msg.decode("utf-8"),"g")
                 peso= msg.decode("utf-8") # Obtener solo la cantidad el numero lo regresa como String
+                peso = peso + 'g'
                 s.close()
-                print()
-                print("ADIOS")
                 messages.info(request, peso)
 
                 return render(request,'index/index.html')
             except:
-                    messages.info(request, 'Error')
-                    print("No se pudo establecer conexion ;v")
+                    messages.info(request, 'Dispensador desconectado')
                     return render(request,'index/index.html')
         #boton peso
         if 'btn2' in request.POST.keys():
             try:
-                print("boton peso")
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect( ('raspy2412.ddns.net',7080) )
                 mensaje = "PESO"
-                print('peso')
                 s.send(bytes(mensaje, "utf-8"))
                 msg = s.recv(1024)
-                print("El peso actual del dispensador es de: ",msg.decode("utf-8"),"g")
                 peso= msg.decode("utf-8") # Obtener solo la cantidad el numero lo regresa como String
+                peso = peso + 'g'
                 s.close()
-                print()
-                print("ADIOS")
                 messages.info(request, peso)
 
                 return render(request,'index/index.html')
-
             except:
-                messages.info(request, 'Error')
-                print("No se pudo establecer conexion ;v")
+                messages.info(request, 'Dispensador desconectado')
                 return render(request,'index/index.html')
 
         if 'btn3' in request.POST.keys():
@@ -149,10 +128,8 @@ def hora_list(request):
     return render(request, 'index/registro_horario.html', contexto)
 
 def hora_create(request):
-    print (request.method)
     if request.method == 'POST':
         form = ListaHoras(request.POST)
-        print (form)
         if form.is_valid():
             form.save()
             return redirect('hora_list')
