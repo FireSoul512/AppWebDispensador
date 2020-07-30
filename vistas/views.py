@@ -144,7 +144,7 @@ class nextClas(View):
         return render(request,'index/next.html')
 
 def hora_list(request):
-    horas = Dispensar.objects.all()
+    horas = Dispensar.objects.all().order_by('id')
     contexto = {'hora':horas}
     return render(request, 'index/registro_horario.html', contexto)
 
@@ -161,3 +161,23 @@ def hora_create(request):
 
     context = {'form':form}
     return render(request, 'index/hora_form.html', context)
+
+def hora_edit(request, id_hora):
+    hora = Dispensar.objects.get(id=id_hora)
+    if request.method == 'GET':
+        form = ListaHoras(instance=hora)
+    else:
+        form = ListaHoras(request.POST, instance=hora)
+        if form.is_valid():
+            form.save()
+            return redirect('hora_list')
+    context = {'form':form}
+    return render(request, 'index/hora_form.html', context)
+
+def hora_delete(request, id_hora):
+    hora = Dispensar.objects.get(id=id_hora)
+    if request.method == 'POST':
+        hora.delete()
+        return redirect('hora_list')
+    context = {'hora':hora}
+    return render(request, 'index/hora_delete.html', context)
