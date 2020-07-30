@@ -4,6 +4,8 @@ import smtplib
 import sqlite3
 from despachar import Despachar
 
+base_datos = '/home/jorgeliy/Web/AppWebDispensador/db.sqlite3'
+
 def ciclo():
     romper = False
     while True:
@@ -11,7 +13,7 @@ def ciclo():
         hora = now.hour
         minuto = now.minute
         try:
-            con = sqlite3.connect('db.sqlite3')
+            con = sqlite3.connect(base_datos)
             cursorObj = con.cursor()
             cursorObj.execute('SELECT vistas_dispensar.hora, vistas_dispensar.minuto, auth_user.email FROM vistas_dispensar, auth_user WHERE vistas_dispensar.id_usuario_id = auth_user.id')
             rows = cursorObj.fetchall()
